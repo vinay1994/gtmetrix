@@ -3,12 +3,14 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.epikso.getmatrix.testcases.Getmatrix">
+      <class name="com.epikso.getmatrix.testcases.WebsiteSpeed">
         <methods>
-          <include name="readSpeed"/>
-          <include name="bf"/>
+          <include name="bt"/>
+          <include name="getLoadAndGrade"/>
+          <include name="getSpeed"/>
+          <include name="after"/>
         </methods>
-      </class> <!-- com.epikso.getmatrix.testcases.Getmatrix -->
+      </class> <!-- com.epikso.getmatrix.testcases.WebsiteSpeed -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

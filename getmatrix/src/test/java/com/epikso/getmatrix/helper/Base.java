@@ -37,7 +37,7 @@ public class Base
 	public void setDriver() 
 	{
 		if(urlread)	{
-		url=prop.getProperty("Google_Speed");
+		url=prop.getProperty("GtMatrix_Url");
 		urlread=false;
 		}
 		else {

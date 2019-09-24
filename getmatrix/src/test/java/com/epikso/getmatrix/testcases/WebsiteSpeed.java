@@ -11,7 +11,14 @@ public class WebsiteSpeed extends Base
 {
 	
 	
-
+/*
+ * run testcases according to mention priority
+ * 
+ * 
+ * 
+ * 
+ * 
+ */
 	
 	@Test(priority=1)
 	public void getLoadAndGrade() throws IOException, InterruptedException
