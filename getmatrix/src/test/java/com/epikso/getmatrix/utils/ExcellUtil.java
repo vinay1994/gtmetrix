@@ -1,7 +1,116 @@
 package com.epikso.getmatrix.utils;
 
-public class ExcellUtil {
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
-	
-	
+import org.apache.poi.sl.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+import com.epikaso.getmatrix.config.Constants;
+
+public class ExcellUtil {
+	String value;
+	public static	int row;
+	Map<Integer, String>map=new HashMap<Integer, String>();
+	int key=0;
+	public Map<Integer, String> readData() throws IOException {
+
+		FileInputStream fis=new FileInputStream(Constants.EXCELL_FILE);
+
+		XSSFWorkbook wb=new XSSFWorkbook(fis);
+		XSSFSheet sheet=wb.getSheet("Sheet1");
+		row=sheet.getLastRowNum();
+
+		for (int i=3;i<row; i++) {
+			Row rw=sheet.getRow(i);
+			value=rw.getCell(1).getStringCellValue();
+			map.put(key++,value);
+
+		}
+		return map;
+
+	}
+
+
+
+	public void writeData(String grades,int count,int a) throws IOException
+	{
+		try
+		{
+			FileInputStream fis = new FileInputStream((Constants.EXCELL_FILE));	
+			XSSFWorkbook wb = new XSSFWorkbook(fis);
+			XSSFSheet sheet = wb.getSheet("Sheet1");
+			FileOutputStream fos = null;
+			XSSFRow rw = sheet.getRow(count);
+			rw.createCell(a++).setCellValue(grades);				
+
+			fos = new FileOutputStream(Constants.EXCELL_FILE);
+			wb.write(fos);
+			fis.close();
+			wb.close();
+			fos.close();
+
+
+
+		}
+
+		catch(FileNotFoundException fnf)
+		{
+
+		}
+	}
+	public void writeDataDouble(double loadTime,int count) throws IOException
+	{
+		try
+		{
+			FileInputStream fis = new FileInputStream((Constants.EXCELL_FILE));	
+			XSSFWorkbook wb = new XSSFWorkbook(fis);
+			XSSFSheet sheet = wb.getSheet("Sheet1");
+
+			XSSFRow rw = sheet.getRow(count);
+			rw.createCell(4).setCellValue(loadTime);			
+			FileOutputStream fos = new FileOutputStream(Constants.EXCELL_FILE);
+			fis.close();
+			wb.write(fos);
+			wb.close();
+			fos.close();
+
+		}
+		catch(FileNotFoundException fnf)
+		{
+
+		}
+	}
+	public void writeDataString(String speed,int count,int cellNum) throws IOException
+	{
+		try
+		{
+			FileInputStream fis = new FileInputStream((Constants.EXCELL_FILE));	
+			XSSFWorkbook wb = new XSSFWorkbook(fis);
+			XSSFSheet sheet = wb.getSheet("Sheet1");
+
+			XSSFRow rw = sheet.getRow(count);
+			rw.createCell(cellNum).setCellValue(speed);			
+			FileOutputStream fos = new FileOutputStream(Constants.EXCELL_FILE);
+			fis.close();
+			wb.write(fos);
+			wb.close();
+			fos.close();
+
+		}
+		catch(FileNotFoundException fnf)
+		{
+
+		}
+	}
+
 }
