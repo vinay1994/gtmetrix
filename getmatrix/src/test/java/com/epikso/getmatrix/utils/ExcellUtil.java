@@ -9,6 +9,9 @@ import java.util.Map;
 
 import org.apache.poi.sl.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.FillPatternType;
+import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFRow;
@@ -51,8 +54,24 @@ public class ExcellUtil {
 			XSSFSheet sheet = wb.getSheet("Sheet1");
 			FileOutputStream fos = null;
 			XSSFRow rw = sheet.getRow(count);
-			rw.createCell(a++).setCellValue(grades);				
+			CellStyle style = wb.createCellStyle();
+			Cell cell;
 
+			if(!grades.toUpperCase().equals("A") || !grades.toUpperCase().equals("B"))
+			{
+				cell = rw.createCell(a);
+
+				style.setFillForegroundColor(IndexedColors.RED.getIndex());  
+	            style.setFillPattern(FillPatternType.SOLID_FOREGROUND);  
+				cell.setCellValue(grades);	
+
+				cell.setCellStyle(style);
+				
+			}
+			else
+			{	
+				cell = rw.createCell(a);
+			}
 			fos = new FileOutputStream(Constants.EXCELL_FILE);
 			wb.write(fos);
 			fis.close();
@@ -77,7 +96,25 @@ public class ExcellUtil {
 			XSSFSheet sheet = wb.getSheet("Sheet1");
 
 			XSSFRow rw = sheet.getRow(count);
-			rw.createCell(4).setCellValue(loadTime);			
+			
+			CellStyle style = wb.createCellStyle();
+			Cell cell = null;
+
+
+			if(loadTime > 4)
+			{
+				cell = rw.createCell(4);
+				cell.setCellValue(loadTime);	
+				style.setFillForegroundColor(IndexedColors.RED.getIndex());  
+	            style.setFillPattern(FillPatternType.SOLID_FOREGROUND);  
+				cell.setCellStyle(style);
+				System.out.println("Inside load time");
+			}
+			else
+			{
+				cell.setCellValue(loadTime);	
+			}
+			
 			FileOutputStream fos = new FileOutputStream(Constants.EXCELL_FILE);
 			fis.close();
 			wb.write(fos);
@@ -94,12 +131,28 @@ public class ExcellUtil {
 	{
 		try
 		{
+			
+			
 			FileInputStream fis = new FileInputStream((Constants.EXCELL_FILE));	
 			XSSFWorkbook wb = new XSSFWorkbook(fis);
 			XSSFSheet sheet = wb.getSheet("Sheet1");
 
 			XSSFRow rw = sheet.getRow(count);
-			rw.createCell(cellNum).setCellValue(speed);			
+			CellStyle style = wb.createCellStyle();
+
+			if(Integer.parseInt(speed) > 10 && cellNum == 5)
+			{
+				Cell cell;
+				cell = rw.createCell(4);
+				cell.setCellValue(speed);	
+				style.setFillForegroundColor(IndexedColors.RED.getIndex());  
+	            style.setFillPattern(FillPatternType.SOLID_FOREGROUND);  
+				cell.setCellStyle(style);
+			}
+			else
+			{	
+				rw.createCell(cellNum).setCellValue(speed);			
+			}
 			FileOutputStream fos = new FileOutputStream(Constants.EXCELL_FILE);
 			fis.close();
 			wb.write(fos);

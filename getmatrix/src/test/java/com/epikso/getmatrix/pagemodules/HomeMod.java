@@ -33,10 +33,11 @@ public class HomeMod extends Base
 		searchText.sendKeys(link);
 		testYourSiteBtn.click();
 		String[] grades = anaMod.getGrade();
-		for(int b=0; b<grades.length; b++) {
-
+		for(int b=0; b<grades.length; b++) 
+		{
 			String grade = grades[b];
 			util.writeData(grade,count,a);
+			a++;
 		}
 		a=2;
 		double loadtime = anaMod.getLoadTime();

@@ -37,6 +37,7 @@ public class GoogleSpeedMod extends Base
 		searchTxt.sendKeys(url);
 		analyzeBtn.click();
 		util.writeDataString(deviceSpeed.get(0).getText(), count, 5);
+		
 		Thread.sleep(3000);
 		clickOndestop.click();
 		util.writeDataString(deviceSpeed.get(1).getText(), count, 6);
