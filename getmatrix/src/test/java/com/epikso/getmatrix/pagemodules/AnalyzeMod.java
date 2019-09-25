@@ -23,15 +23,18 @@ public class AnalyzeMod
 	
 	public String[] getGrade() 
 	{
+		
 		String[] s = new String[2];
 		String cssValue, grade;
-		
+		try {
 		for(int i = 0; i < 2; i++)
 		{
 			cssValue = gradeValue.get(i).getAttribute("class");
 			grade = cssValue.substring(cssValue.length() - 1, cssValue.length());
 			s[i]=grade;
 		}
+		}
+		catch(Exception e) {}
 		return s;
 	}
 	
@@ -42,4 +45,5 @@ public class AnalyzeMod
 		loadTextWithoutS = loadTextWithS.substring(0, loadTextWithS.length() - 1);
 		return Double.parseDouble(loadTextWithoutS);
 	}
+	
 }

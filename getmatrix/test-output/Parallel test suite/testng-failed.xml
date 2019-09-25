@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="2" parallel="methods" name="Failed suite [Parallel test suite]" guice-stage="DEVELOPMENT">
+  <test thread-count="2" parallel="methods" name="Regression 1(failed)">
+    <classes>
+      <class name="com.epikso.getmatrix.testcases.WebsiteSpeed">
+        <methods>
+          <include name="bt"/>
+          <include name="getLoadAndGrade"/>
+          <include name="getSpeed"/>
+          <include name="after"/>
+        </methods>
+      </class> <!-- com.epikso.getmatrix.testcases.WebsiteSpeed -->
+    </classes>
+  </test> <!-- Regression 1(failed) -->
+</suite> <!-- Failed suite [Parallel test suite] -->
